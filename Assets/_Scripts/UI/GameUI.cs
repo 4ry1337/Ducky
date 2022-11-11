@@ -11,17 +11,21 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Transform _container;
     [SerializeField] private Image _shield;
     [SerializeField] private Image _heart;
+    [SerializeField] private AudioClip _winSound;
+    [SerializeField] private AudioClip _lossSound;
     private void OnDestroy() => GameManager.OnAfterStateChanged -= OnStateChanged;
     private void OnStateChanged(GameState newState)
     {
         if (newState == GameState.Win)
         {
+            AudioSystem.Instance.PlaySound(_winSound);
             _score.text = GameManager.Instance.getBread().ToString() + " / " + GameManager.Instance.getTotalBread().ToString();
             _win.SetActive(true);
             LoadCompleteness();
         }
         else if (newState == GameState.Loss)
         {
+            AudioSystem.Instance.PlaySound(_lossSound);
             _loss.SetActive(true);
         }
     }
@@ -58,7 +62,7 @@ public class GameUI : MonoBehaviour
         }
         if(_completeness != 0)
         {
-            _stars.fillAmount = Mathf.MoveTowards(_stars.fillAmount, _completeness, 3 * Time.deltaTime);
+            _stars.fillAmount = Mathf.MoveTowards(_stars.fillAmount, _completeness, 3 * Time.unscaledDeltaTime);
         }
     }
     #region ui

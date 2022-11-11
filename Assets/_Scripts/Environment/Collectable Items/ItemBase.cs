@@ -2,6 +2,7 @@
 
 public abstract class ItemBase : MonoBehaviour
 {
+    [SerializeField] private AudioClip _sound;
     private void Start()
     {
         GetComponent<Collider>();
@@ -15,6 +16,7 @@ public abstract class ItemBase : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioSystem.Instance.PlaySound(_sound);
             Destroy(gameObject);
         }
     }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ResourceSystem : StaticInstance<ResourceSystem>
+public class ResourceSystem : Singleton<ResourceSystem>
 {
     #region Player
     public List<ScriptableCharacter> Characters { get; private set; }

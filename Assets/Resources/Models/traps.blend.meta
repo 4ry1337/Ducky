@@ -6,7 +6,17 @@ ModelImporter:
   - first:
       74: -623603649343465320
     second: Scene
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trap-blades
+    second: {fileID: 2100000, guid: d98579a59a9a40d47870460a172348c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trap-wood
+    second: {fileID: 2100000, guid: 2c15e14c47a327348b87bfc6a83c5949, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

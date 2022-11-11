@@ -3,7 +3,17 @@ guid: a39cefeb2cfb8db4b9339b56f670d5bc
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shield-border
+    second: {fileID: 2100000, guid: 558704a0a751cd7468aa2f175a9fa93d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shield-inner
+    second: {fileID: 2100000, guid: 80310f6fdfc0af24f983e11d6b1965a6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -20,6 +20,7 @@ public class UnitManager : StaticInstance<UnitManager>
     }
     public void CharacterDeath()
     {
+        spawned.Death();
         Camera_Follow.Instance.target = CheckpointManager.Instance.currentCheckpoint.transform;
     }
     public async void Respawn()

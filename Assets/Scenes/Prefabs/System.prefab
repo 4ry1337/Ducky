@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d8d8d8a1c105546b4c9470f89b2abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicSource: {fileID: 8664280050743873043}
-  _soundSource: {fileID: 6560538074374665929}
+  _musicSource: {fileID: 6560538074374665929}
+  _effectSource: {fileID: 8664280050743873043}
 --- !u!1 &4394824817188548338
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 3671424113838912412}
   - component: {fileID: 6560538074374665929}
   m_Layer: 0
-  m_Name: Music
+  m_Name: Music Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +182,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 7778090532133631783}
   - component: {fileID: 8664280050743873043}
   m_Layer: 0
-  m_Name: Audio
+  m_Name: Effects Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,11 +308,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ef281c274f5ec6a4d9c17c75229d75c0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

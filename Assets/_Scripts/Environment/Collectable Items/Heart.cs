@@ -9,8 +9,8 @@ public class Heart : ItemBase
         {
             if (!(GameManager.Instance.getMaxHealth() == GameManager.Instance.getHealth()))
             {
-                Destroy(gameObject);
                 GameManager.Instance.IncreaseHealth();
+                base.OnTriggerEnter(other);
             }
         }
     }

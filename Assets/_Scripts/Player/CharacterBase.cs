@@ -7,7 +7,9 @@ public class CharacterBase : MonoBehaviour
     public virtual void SetStats(Stats stats) => Stats = stats;
 
     [SerializeField] private Rigidbody _rb;
-    private Vector3 _dir;
+    [SerializeField] private AudioClip _sound;
+    [SerializeField] private AudioClip _death;
+    private Vector3 _input;
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -16,31 +18,45 @@ public class CharacterBase : MonoBehaviour
     }
     void Update()
     {
+        GatherInputs();
         handleGrounding();
         handleWalking();
         handleJumping();
+        Look();
     }
     #region Controller
+    void GatherInputs()
+    {
+        _input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            AudioSystem.Instance?.PlaySound(_sound, 0.5f);
+        }
+    }
+    public void Death()
+    {
+        AudioSystem.Instance?.PlaySound(_death, 0.5f);
+    }
     #region Grounded
     [Header("Detection")]
     [SerializeField] private LayerMask _groundMask;
-    [SerializeField] private float _grounderOffset;
-    [SerializeField] private float _grounderRadius;
-    private readonly Collider[] _ground = new Collider[1];
+    [SerializeField] private float _grounderOffset = -1, _grounderRadius = 0.2f;
     public bool IsGrounded = true;
     public static event Action OnTouchedGround;
+    private readonly Collider[] _ground = new Collider[1];
     private void handleGrounding()
     {
         var grounded = Physics.OverlapSphereNonAlloc(transform.position + new Vector3(0, _grounderOffset), _grounderRadius, _ground, _groundMask) > 0;
+
         if (!IsGrounded && grounded)
         {
             IsGrounded = true;
+            _hasJumped = false;
             OnTouchedGround?.Invoke();
         }
         else if (IsGrounded && !grounded)
         {
             IsGrounded = false;
-            transform.SetParent(null);
         }
 
     }
@@ -54,23 +70,27 @@ public class CharacterBase : MonoBehaviour
     [Header("Walking")]
     [SerializeField] private float _speed;
     [SerializeField] private float _rotSpeed;
+    private void Look()
+    {
+        if (_input != Vector3.zero)
+        {
+            var relative = (transform.position + _input) - transform.position;
+            var rot = Quaternion.LookRotation(relative, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, _rotSpeed * Time.deltaTime);
+        }
+    }
     private void handleWalking()
     {
-        _dir = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        if (_dir != Vector3.zero)
-        {
-            Quaternion toRotate = Quaternion.LookRotation(_dir);
-            toRotate = Quaternion.RotateTowards(transform.rotation, toRotate, _rotSpeed * Time.deltaTime);
-            _rb.MoveRotation(toRotate);
-        }
-        _dir.Normalize();
-        _dir *= _speed;
-        _dir.y = _rb.velocity.y;
-        _rb.velocity = _dir;
+        var _idealSpeed = _input;
+        _idealSpeed.Normalize();
+        _idealSpeed *= _speed;
+        _idealSpeed.y = _rb.velocity.y;
+        _rb.velocity = Vector3.MoveTowards(_rb.velocity, _idealSpeed, 100 * Time.deltaTime);
     }
     #endregion
     #region Jump
     [Header("Jump")]
+    [SerializeField] private bool _hasJumped;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _fallMultiplier = 1.2f;
     [SerializeField] private float _jumpVelocityFalloff = 4;
@@ -80,15 +100,17 @@ public class CharacterBase : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if (IsGrounded || (Time.time < _timeLeftGrounded + _coyoteTime))
-            {
-                _rb.AddForce(transform.up * _jumpForce);
+            if((IsGrounded || Time.time < _timeLeftGrounded + _coyoteTime) && !_hasJumped){
+                _rb.velocity = new Vector3(_rb.velocity.x, _jumpForce, _rb.velocity.z);
+                _hasJumped = true;
             }
         }
+        
         if (_rb.velocity.y < _jumpVelocityFalloff || _rb.velocity.y > 0 && !Input.GetButton("Jump"))
         {
             _rb.velocity += Vector3.up * Physics.gravity.y * _fallMultiplier * Time.deltaTime;
         }
+
     }
     #endregion
     #endregion

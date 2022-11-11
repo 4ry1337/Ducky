@@ -3,7 +3,17 @@ guid: 1a79e428f75be654c96f605ff7d7bab8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: checkpoint
+    second: {fileID: 2100000, guid: 3e1b716e63463644698a3773e3b84efb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: isChecked
+    second: {fileID: 2100000, guid: 8f0dc5221188e6342b9f5bbf7637e098, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

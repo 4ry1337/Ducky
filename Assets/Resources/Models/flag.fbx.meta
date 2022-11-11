@@ -3,7 +3,22 @@ guid: 067f84bb6779f5e439954e7bf62759d2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flag
+    second: {fileID: 2100000, guid: a40bd22e3a3f16e429e103c083b4db51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flag-stick
+    second: {fileID: 2100000, guid: 4ad2ed54636b91e459653b3c94a1da8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flasg-red
+    second: {fileID: 2100000, guid: b627f38b18848454ea0dac66cb581634, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -68,6 +68,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void HandleStart()
     {
+        Time.timeScale = 1f;
         _health = _maxhealth;
         _bread = 0;
         _shield = false;
@@ -98,11 +99,11 @@ public class GameManager : Singleton<GameManager>
     }   
     private void HandleWin()
     {
-
+        Time.timeScale = 0f;
     }
     private void HandleLoss()
     {
-
+        Time.timeScale = 0f;
     }
 
     public event Action onIncreaseBread;

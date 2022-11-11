@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isChecked: 0
+  _sound: {fileID: 8300000, guid: f67bfb690a0a5c24885726db474ffb3b, type: 3}
 --- !u!1001 &4766263804077611862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -127,6 +128,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1a79e428f75be654c96f605ff7d7bab8,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1a79e428f75be654c96f605ff7d7bab8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e1b716e63463644698a3773e3b84efb, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 1a79e428f75be654c96f605ff7d7bab8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa4b4476b6748ac4e9c6372eacf3be42, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 1a79e428f75be654c96f605ff7d7bab8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8af4041bbb210b4190820e3e16f8df5, type: 2}
     - target: {fileID: 919132149155446097, guid: 1a79e428f75be654c96f605ff7d7bab8,
         type: 3}
       propertyPath: m_Name
