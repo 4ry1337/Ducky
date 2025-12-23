@@ -1,8 +1,9 @@
 name: check if code still compiles
 
 on:
-  schedule:
-    - cron: '0 8 * * *'
+  push:
+    branches:
+      - main
 
 env:
   CARGO_TERM_COLOR: always
@@ -13,8 +14,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: 'my-bevy-main-support-branch'
 
       - name: Install Dependencies
         run: sudo apt-get update && sudo apt-get install g++ pkg-config libx11-dev libasound2-dev libudev-dev
